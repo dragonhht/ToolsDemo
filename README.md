@@ -1,6 +1,6 @@
 # 一些工具的使用
 
-#＃ [Swagger使用](./src/main/java/dragon/hht/swaggerdemo)
+## [Swagger使用](./src/main/java/dragon/hht/swaggerdemo)
 
 -   Swagger的依赖
 
@@ -54,3 +54,13 @@
         -   `code`: HttpCode数字，如400
         
         -   `message`: 信息
+        
+## [mybatis-generator的使用](./mybatis-generator)
+
+-   下载好mybatis-generator，相关数据库连接驱动的相关jar包，
+
+-   准备好目录结构，mybatis-generator不会自动生成相关目录
+
+-   编写好配置文件，如[配置文件](./mybatis-generator/MybatisGeneratorConfig.xml),这里只是简单的配置，相关详细配置可参考网络他人博客
+
+-   运行如下命令：`java -jar mybatis-generator-core-1.3.6.jar -configfile MybatisGeneratorConfig.xml -overwrite`，即可生成相关文件

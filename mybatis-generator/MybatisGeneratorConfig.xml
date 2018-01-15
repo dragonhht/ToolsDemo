@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<!-- 配置生成器 -->
+<generatorConfiguration>
+
+    <!--数据库驱动-->
+    <classPathEntry location="mysql-connector-java-5.1.45-bin.jar" />
+
+    <context id="mysql" defaultModelType="hierarchical" targetRuntime="MyBatis3Simple">
+
+        <commentGenerator>
+            <!--去除xml文件中的注释-->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!--配置连接数据库， 必要元素-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/FlowBook"
+                        userId="root" password="123">
+        </jdbcConnection>
+
+        <!-- java类型处理器
+            用于处理DB中的类型到Java中的类型，默认使用JavaTypeResolverDefaultImpl；
+            注意一点，默认会先尝试使用Integer，Long，Short等来对应DECIMAL和 NUMERIC数据类型；
+        -->
+        <!--<javaTypeResolver type="org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl">
+            &lt;!&ndash;
+                true：使用BigDecimal对应DECIMAL和 NUMERIC数据类型
+                false：默认,
+                    scale>0;length>18：使用BigDecimal;
+                    scale=0;length[10,18]：使用Long；
+                    scale=0;length[5,9]：使用Integer；
+                    scale=0;length<5：使用Short；
+             &ndash;&gt;
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>-->
+
+
+        <!-- java模型创建器，必要元素
+            targetPackage：生成的类要放的包
+            targetProject：目标项目，指定一个存在的目录下，生成的内容会放到指定目录中，如果目录不存在，MBG不会自动建目录
+         -->
+        <javaModelGenerator targetPackage="hht.dragon.entity" targetProject="src"></javaModelGenerator>
+
+
+        <!-- 生成XML映射文件-->
+        <sqlMapGenerator targetPackage="hht.dragon.mapping" targetProject="src"></sqlMapGenerator>
+
+
+        <!-- 用于生成mapper接口
+            targetPackage/targetProject:同javaModelGenerator
+            type：控制生成的sql语句写在哪里：
+                1，ANNOTATEDMAPPER：生成的sql以注解的形式写在类中
+                2，MIXEDMAPPER：使用混合配置，会生成Mapper接口，并适当添加合适的Annotation，但是XML会生成在XML中；
+                3，XMLMAPPER：写在xml中；
+        -->
+        <javaClientGenerator targetPackage="hht.dragon.mapper" type="XMLMAPPER"
+                             targetProject="src"></javaClientGenerator>
+
+        <!-- 选择一个table来生成相关文件，其中也指定了model的类名
+            tableName（必要）：要生成对象的表名；
+            可选（部分）：
+            1，schema：数据库的schema；
+            2，catalog：数据库的catalog；
+            3，alias：为数据表设置的别名，如果设置了alias，那么生成的所有的SELECT SQL语句中，列名会变成：alias_actualColumnName
+            4，domainObjectName：生成的domain类的名字，如果不设置，直接使用表名作为domain类的名字；可以设置为somepck.domainName，那么会自动把domainName类再放到somepck包里面；
+         -->
+        <table tableName="user" domainObjectName="User"></table>
+
+    </context>
+
+</generatorConfiguration>
