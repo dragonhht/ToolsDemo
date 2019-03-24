@@ -32,4 +32,10 @@ public class Test {
         System.out.println(user1);
     }
 
+    @org.junit.Test
+    public void testSingleton() {
+        Singston singston = Singston.INSTANCE;
+        singston.work("dragonhht");
+    }
+
 }
